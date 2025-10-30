@@ -1,0 +1,5 @@
+{
+  "name": "Kid's Screen Time Tracker",
+  "description": "A simple application to help parents and kids track screen time for activities like Roblox and YouTube. It includes AI-powered insights to provide conversation starters and alternative activity suggestions.",
+  "requestFramePermissions": []
+}
