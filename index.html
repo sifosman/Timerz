@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF--8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kid's Screen Time Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Nunito', 'sans-serif'],
+            },
+            colors: {
+              'brand-background': '#F4F4F2',
+              'brand-card': '#FFFFFF',
+              'brand-green': '#D9E8D4',
+              'brand-orange': '#FBE6C2',
+              'brand-text-dark': '#4F4A45',
+              'brand-text-light': '#6A5C51',
+              'brand-accent-maroon': '#B96F5C',
+              'brand-accent-brown': '#6A5C51',
+              'brand-primary': '#6A5C51', // Re-aliased for new design
+              'brand-secondary': '#B96F5C', // Re-aliased for new design
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.28.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-brand-background">
+    <div id="root"></div>
+    <script type="module" src="./index.js"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
