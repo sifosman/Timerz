@@ -1,8 +1,7 @@
 import { GoogleGenAI, Modality } from "@google/genai";
 
-// FIX: Removed the conditional API key check to align with guidelines,
-// assuming process.env.API_KEY is always provided in the environment.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY as string | undefined;
+const ai = GEMINI_API_KEY ? new GoogleGenAI({ apiKey: GEMINI_API_KEY }) : null;
 
 export const getInsightsFromGemini = async (): Promise<string> => {
     const prompt = `
@@ -17,12 +16,18 @@ export const getInsightsFromGemini = async (): Promise<string> => {
     `;
 
     try {
+        if (!ai) {
+          return "Hoo-hoo! Little breaks from screens help your eyes and brain feel great!";
+        }
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
             contents: prompt,
         });
 
-        return response.text;
+        // SDK returns an object with a text() method in recent versions
+        // Fallback to string if not available
+        // @ts-ignore
+        return typeof response.text === 'function' ? response.text() : (response.text || "Hoo-hoo! Remember to take screen breaks!");
     } catch (error) {
         console.error("Error calling Gemini API:", error);
         throw new Error("Failed to get insights from Gemini API.");
@@ -31,6 +36,7 @@ export const getInsightsFromGemini = async (): Promise<string> => {
 
 export const generateSpeech = async (text: string): Promise<string | null> => {
     try {
+        if (!ai) return null;
         const response = await ai.models.generateContent({
             model: "gemini-2.5-flash-preview-tts",
             contents: [{ parts: [{ text }] }],
